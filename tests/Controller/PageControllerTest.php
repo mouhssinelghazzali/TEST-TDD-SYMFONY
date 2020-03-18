@@ -20,10 +20,18 @@ class PageControllerTest extends WebTestCase
         $client->request('GET','/hello');
         $this->assertSelectorTextContains('h1','ELGHAZZALI');
     }
-    public function testAuthPage()
+//     public function testAuthPage()
+//     {
+//         $client = static::createClient();
+//         $client->request('GET','/auth');
+//   //      $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
+//     }
+
+    public function testRedirectToLogin()
     {
         $client = static::createClient();
         $client->request('GET','/auth');
-        $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
+        $this->assertResponseRedirects('/login');
     }
+    
 }
